@@ -1,0 +1,41 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pylint pytest
+    
+    - name: Lint with pylint
+      run: |
+        pylint app.py data_loader.py image_classifier.py --disable=C0114,C0116
+    
+    - name: Test imports
+      run: |
+        python -c "import streamlit, pandas, plotly.express; print('✅ Imports OK')"
+        python -c "from data_loader import load_telecom_data; print('✅ data_loader OK')"
+        python -c "from image_classifier import load_vit_model; print('✅ image_classifier OK')"
+    
+    - name: Test syntax
+      run: |
+        python -m py_compile app.py
+        python -m py_compile data_loader.py
+        python -m py_compile image_classifier.py

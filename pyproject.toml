@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "techcomview-sa"
+version = "1.0.0"
+description = "Dashboard interactivo para análisis de infraestructura de telecomunicaciones"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "TechComView SA", email = "contact@techcomview.com"},
+]
+keywords = ["telecom", "dashboard", "streamlit", "data-analysis", "visualization"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "streamlit>=1.28.0",
+    "pandas>=1.5.0",
+    "plotly>=5.15.0",
+    "transformers>=4.21.0",
+    "torch>=1.12.0",
+    "pillow>=9.0.0",
+    "numpy>=1.21.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pylint>=2.15.0",
+    "pytest>=7.0.0",
+    "black>=22.0.0",
+    "isort>=5.10.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/airfranc86/Techcom-View-SA"
+Repository = "https://github.com/airfranc86/Techcom-View-SA"
+Issues = "https://github.com/airfranc86/Techcom-View-SA/issues"
+Documentation = "https://github.com/airfranc86/Techcom-View-SA#readme"
+
+[tool.pylint]
+max-line-length = 100
+disable = ["C0114", "C0116", "R0903", "W0613"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 100

@@ -1,0 +1,21 @@
+# TelecomView SA - MVP Dependencies
+# Versiones mínimas para Streamlit Cloud
+
+# Core Streamlit
+streamlit>=1.28.0
+
+# Visualización
+plotly>=5.17.0
+
+# Data processing
+pandas>=2.1.0
+numpy>=1.24.0
+
+# AI/ML (solo ViT para clasificación de imágenes)
+transformers>=4.35.0
+torch>=2.0.0
+pillow>=10.0.0
+folium>=0.14.0
+
+# Utilidades
+requests>=2.31.0
