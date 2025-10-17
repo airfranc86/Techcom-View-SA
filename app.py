@@ -267,9 +267,14 @@ with col_left:
         fig_bar.update_layout(
             showlegend=False,
             height=400,
-            yaxis={'categoryorder': 'total ascending'}
+            yaxis={'categoryorder': 'total ascending'},
+            width=None  # Eliminar width explícitamente
         )
-        st.plotly_chart(fig_bar, width='stretch')
+        st.plotly_chart(fig_bar, use_container_width=True, config={
+            'displayModeBar': True,
+            'displaylogo': False,
+            'modeBarButtonsToRemove': ['pan2d', 'lasso2d', 'select2d']
+        })
     else:
         st.info("No hay datos que coincidan con los filtros seleccionados")
 
@@ -291,8 +296,12 @@ with col_right:
         color_discrete_sequence=px.colors.sequential.RdBu
     )
     fig_pie.update_traces(textposition='inside', textinfo='percent+label')
-    fig_pie.update_layout(height=400)
-    st.plotly_chart(fig_pie, width='stretch')
+    fig_pie.update_layout(height=400, width=None)  # Eliminar width explícitamente
+    st.plotly_chart(fig_pie, use_container_width=True, config={
+        'displayModeBar': True,
+        'displaylogo': False,
+        'modeBarButtonsToRemove': ['pan2d', 'lasso2d', 'select2d']
+    })
 
 st.markdown("---")
 
@@ -349,6 +358,7 @@ if not filtered_df.empty and 'latitude' in filtered_df.columns and 'longitude' i
 
     fig_map.update_layout(
         height=600,
+        width=None,  # Eliminar width explícitamente
         margin={'r': 0, 't': 30, 'l': 0, 'b': 0},
         coloraxis_colorbar=dict(
             title="Antenas",
@@ -363,7 +373,11 @@ if not filtered_df.empty and 'latitude' in filtered_df.columns and 'longitude' i
         )
     )
 
-    st.plotly_chart(fig_map, width='stretch')
+    st.plotly_chart(fig_map, use_container_width=True, config={
+        'displayModeBar': True,
+        'displaylogo': False,
+        'modeBarButtonsToRemove': ['pan2d', 'lasso2d', 'select2d']
+    })
 else:
     st.info("No hay datos de coordenadas disponibles para mostrar el mapa")
 
@@ -390,8 +404,12 @@ if comparison_type == 'Total de Torres':
         color_continuous_scale='Blues',
         labels={'total_cells': 'Total de Antenas', 'country': 'País'}
     )
-    fig.update_layout(height=500)
-    st.plotly_chart(fig, width='stretch')
+    fig.update_layout(height=500, width=None)  # Eliminar width explícitamente
+    st.plotly_chart(fig, use_container_width=True, config={
+        'displayModeBar': True,
+        'displaylogo': False,
+        'modeBarButtonsToRemove': ['pan2d', 'lasso2d', 'select2d']
+    })
 
 elif comparison_type == 'Por Tecnología':
     st.markdown("### 📡 Comparativa por Tecnología")
@@ -405,8 +423,12 @@ elif comparison_type == 'Por Tecnología':
         labels={'value': 'Número de Antenas', 'index': 'Tecnología'},
         color_discrete_sequence=px.colors.qualitative.Set2
     )
-    fig.update_layout(height=500)
-    st.plotly_chart(fig, width='stretch')
+    fig.update_layout(height=500, width=None)  # Eliminar width explícitamente
+    st.plotly_chart(fig, use_container_width=True, config={
+        'displayModeBar': True,
+        'displaylogo': False,
+        'modeBarButtonsToRemove': ['pan2d', 'lasso2d', 'select2d']
+    })
 
 elif comparison_type == 'Por Población':
     st.markdown("### 👥 Análisis por Población")
@@ -429,8 +451,12 @@ elif comparison_type == 'Por Población':
             },
             hover_data=['total_cells', 'gsm', 'umts', 'lte', 'nr']
         )
-        fig.update_layout(height=500)
-        st.plotly_chart(fig, width='stretch')
+        fig.update_layout(height=500, width=None)  # Eliminar width explícitamente
+        st.plotly_chart(fig, use_container_width=True, config={
+        'displayModeBar': True,
+        'displaylogo': False,
+        'modeBarButtonsToRemove': ['pan2d', 'lasso2d', 'select2d']
+    })
     else:
         st.info("No hay datos de población disponibles")
 
@@ -450,8 +476,12 @@ elif comparison_type == 'Ranking 5G':
         color_continuous_scale='Purples',
         labels={'nr': 'Antenas 5G', 'country': 'País'}
     )
-    fig.update_layout(height=500)
-    st.plotly_chart(fig, width='stretch')
+    fig.update_layout(height=500, width=None)  # Eliminar width explícitamente
+    st.plotly_chart(fig, use_container_width=True, config={
+        'displayModeBar': True,
+        'displaylogo': False,
+        'modeBarButtonsToRemove': ['pan2d', 'lasso2d', 'select2d']
+    })
 
 st.markdown("---")
 
